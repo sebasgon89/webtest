@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<title>Trabajando con el DOM</title>
+		<style>
+			#titulares {
+				font-weight:bold;
+				font-size:18px;
+			}
+			#suplentes {
+				font-style:italic;
+			}
+			.hombre {
+				color:#367889;
+			}
+			.mujer {
+				color:#CC3366;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="listados">
+			<ul id="titulares">
+				<li class="mujer">Sara
+				<li class="mujer">Carolina
+				<li class="hombre">Ricardo
+			</ul>
+			<ul id="suplentes">
+				<li class="hombre">Nicolás
+				<li class="hombre">Matías
+				<li class="hombre">Roberto
+			</ul>
+		</div>
+		<form>
+			<label for="nombre">Nombre:</label>
+				<input type="text" name="nombre" id="txtNombre"/>
+			<label for="genero">Género:</label>
+				<select name="genero" id="selGenero">
+					<option>hombre</option>
+					<option>mujer</option>
+				</select>
+			<label for="tipo">Tipo:</label>
+				<select name="tipo" id="selTipo">
+					<option>titulares</option>
+					<option>suplentes</option>
+				</select>
+				
+			<input type="button" value="Agregar" onclick="agregar()"/>
+		</form>
+	</body>
+	
+	<script>
+		function halloWelle(){
+			console.log("Hallo Welle!");
+		}
+		
+		function testGetElementById(){
+			var lTitulares = document.getElementById("titulares");
+			lTitulares.style.fontSize = 1;
+		}
+		function agregar(){
+			var nombreIngresado = document.getElementById("txtNombre").value;
+			if (nombreIngresado != ""){
+				var item = document.createElement("li");
+				item.innerHTML = nombreIngresado;
+				
+				var selGenero = document.getElementById('selGenero');
+				item.className = selGenero.options[selGenero.selectedIndex].text;
+				
+				var selTipo = document.getElementById('selTipo');
+				var listaSeleccionada = selTipo.options[selTipo.selectedIndex].text;
+				console.log(listaSeleccionada);
+				
+				document.getElementById(listaSeleccionada).appendChild(item);
+				
+				
+			} else {
+				alert("Error en txtNombre!");
+			}
+		}
+	</script>
+</html>
